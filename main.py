@@ -1,8 +1,13 @@
+# Import libraries
 import zipfile
 from pathlib import Path
 import os
 import urllib.request
 import csv
+
+# ----------------------------------------------------------------
+# Import folders
+import model
 
 
 # Take data raw from github link (self generated)
@@ -64,7 +69,7 @@ if __name__ == "__main__":
     path_download = "https://github.com/Rom1009/Data/raw/main/cat_dog_data"
     # create_file(path_download, train_str)
     # create_file(path_download, test_str)
-
     # -------------------------------
     # create csv file for Dataset
     # csv_file()
+    model.Model.print()
