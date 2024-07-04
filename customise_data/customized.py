@@ -4,7 +4,7 @@ import torch
 import os
 from skimage import io, transform
 import numpy as np
-from utils import *
+from utils import load_images
 
 
 def train_features_labels():
