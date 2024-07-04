@@ -1,8 +1,3 @@
-import matplotlib.pyplot as plt
-import os
-from pathlib import Path
-import shutil
-
 import glob
 import torch
 from torchvision import transforms
@@ -14,12 +9,6 @@ from PIL import Image
 from Model_.model import *
 import NerualNetwork
 from customise_data.customized import *
-
-
-def load_model(path):
-    with open(path, "rb") as f:
-        obj = pickle.load(f)
-    return obj
 
 
 model = NerualNetwork.CNN()
