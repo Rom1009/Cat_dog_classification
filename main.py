@@ -1,23 +1,31 @@
 # Import libraries
-
+from torchvision import transforms
+from torch.utils.data import DataLoader
+import matplotlib.pyplot as plt
 
 # ----------------------------------------------------------------
 # Import folders
-import model
 from utils import *
+from Model_.model import *
+import NerualNetwork
 
 
 def main():
-    print("Hello World")
+    train_loader, test_loader, len_features = Data_Loader()
+    loss_criteria = nn.BCELoss()
+    learning_rate = 0.001
+    model = NerualNetwork.CNN()
+    optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+    Load_Model(optimizer, model, train_loader, test_loader, loss_criteria)
 
 
 if __name__ == "__main__":
     # create folder "dataset/data"  and unzip folder in its
     train_str = "train.zip"
     test_str = "test.zip"
-    path_download = "https://github.com/Rom1009/Data/raw/main/cat_dog_data"
-    # create_file(path_download, train_str)
-    # create_file(path_download, test_str)
+    # create_file(train_str)
+    # create_file(test_str)
+
     # -------------------------------
-    # create csv file for Dataset
-    # csv_file()
+
+    main()

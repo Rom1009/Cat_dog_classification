@@ -3,11 +3,13 @@ import zipfile
 from pathlib import Path
 import os
 import urllib.request
-import csv
+import torch.nn as nn
+import cv2
+from tqdm import tqdm
 
 
 # Take data raw from github link (self generated)
-def create_file(path_download: str, filename: str):
+def create_file(filename: str):
     # Create path zip folder
     zip_dir = Path(os.path.join("dataset/data", filename))
 
@@ -18,9 +20,11 @@ def create_file(path_download: str, filename: str):
         Path("dataset/data").mkdir(parents=True, exist_ok=True)
 
         # Create link to zip file
-        url = os.path.join(path_download, filename)
+        url = os.path.join(
+            "https://github.com/Rom1009/Data/raw/main/cat_dog_data", filename
+        )
         url = url.replace("\\", "/")
-
+        print(url)
         # Request zip file on github server to download
         urllib.request.urlretrieve(url, zip_dir)
 
@@ -29,26 +33,28 @@ def create_file(path_download: str, filename: str):
             data_file.extractall("dataset/data")
 
 
-# Create csv file to store image and labels of dataset and Use for Dataset class
-def csv_file():
-    root_dir = "dataset/data/train"
+def load_images(path):
+    list_of_images = os.listdir(path)
+    images = []
+    for img in tqdm(list_of_images):
+        if img == "_DS_Store":
+            continue
+        image = cv2.imread(os.path.join(path, img))
+        image = cv2.resize(image, dsize=(100, 100))
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        images.append(image)
+    return images
 
-    csv_name = "dataset/cat_dog.csv"
 
-    classes = ["dogs", "cats"]
-
-    # Read csv file if not created
-    with open(csv_name, "w", newline="") as file:
-        # write csv file and headers
-        writer = csv.writer(file)
-        writer.writerow(["filename", "label"])
-
-        # Loop throught classes to write the contain
-        for label, class_name in enumerate(classes):
-            class_dir = os.path.join(root_dir, class_name)
-
-            # Loop in list "dataset/data/train" + class_dir
-            for img_name in os.listdir(class_dir):
-                # Check if the imgs are jpg, png,...
-                if img_name.endswith((".jpg")):
-                    writer.writerow([img_name, label])
+# Change inital weights
+def weights_inital(m, init_type="xavier"):
+    if type(m) == "Linear":
+        if init_type == "xavier":
+            nn.init.xavier_uniform_(m.weight)
+            m.bias.data.fill(0.01)
+        elif init_type == "normal":
+            nn.init.normal_(m.weight)
+            m.bias.data.fill(0.01)
+        elif init_type == "he":
+            nn.init.kaiming_normal_(m.weight)
+            m.bias.data.fill(0.01)

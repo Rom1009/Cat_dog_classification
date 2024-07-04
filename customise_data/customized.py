@@ -4,32 +4,39 @@ import torch
 import os
 from skimage import io, transform
 import numpy as np
+from utils import *
+
+
+def train_features_labels():
+    cat_train = load_images("dataset/data/train/cats")
+    dog_train = load_images("dataset/data/train/dogs")
+
+    features = np.append(cat_train, dog_train, axis=0)
+    labels = np.array([0] * len(cat_train) + [1] * len(dog_train))
+    return features, labels
+
+
+# def test_features_labels():
+#     features = load_images("dataset/data/test")
+#     return features
 
 
 class Cat_Dog_Dataset(Dataset):
-    def __init__(self, csv_file, root_dir, transform=None):
-        self.cat_dog_csv = pd.read_csv(csv_file)
-        self.root_dir = root_dir
+    def __init__(self, images, labels=None, transform=None):
+        self.images = images
+        self.labels = labels
         self.transform = transform
 
     def __len__(self):
-        return len(self.cat_dog_csv)
+        return len(self.images)
 
     def __getitem__(self, idx):
-        if torch.is_tensor(idx):
-            idx = idx.tolist()
-
-        img_name = os.path.join(self.root_dir, self.cat_dog_csv.iloc[idx, 0])
-        image = io.imread(img_name)
-        cat_dog = self.cat_dog_csv.iloc[idx, 1]
-        cat_dog = np.asarray([cat_dog])
-        cat_dog = cat_dog.astype("float")
-        sample = {"image": image, "cat_dog": cat_dog}
+        image = self.images[idx]
+        label = self.labels[idx]
 
         if self.transform:
-            sample = self.transform(sample)
-
-        return sample
+            image = self.transform(image)
+        return (image, label)
 
 
 class Rescale(object):
