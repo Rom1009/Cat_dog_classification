@@ -1,6 +1,5 @@
 import torch
 
-
 def test(model, data_loader, loss_criteria):
     model.eval()
     correct = 0
