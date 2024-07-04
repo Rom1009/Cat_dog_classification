@@ -37,15 +37,10 @@ class Cat_Dog_Dataset(Dataset):
 
 # Hàm để xử lý hình ảnh
 def process_image(path):
-    for file_path in glob.glob(
-        "**/*", recursive=True
-    ):  # Tìm trong tất cả các thư mục và tệp
-        if path in file_path:
-            image = cv2.imread(file_path)
-            image = cv2.resize(image, (100, 100))
-            image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-            return [image]
-    return None
+    image = cv2.imread(file_path)
+    image = cv2.resize(image, (100, 100))
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    return [image]
 
 
 # Tiêu đề của ứng dụng
