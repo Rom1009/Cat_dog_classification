@@ -32,6 +32,7 @@ class Cat_Dog_Dataset(Dataset):
 
     def __getitem__(self, idx):
         image = self.images[idx]
+
         label = self.labels[idx]
 
         if self.transform:

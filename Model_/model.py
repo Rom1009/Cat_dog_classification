@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split
 from customise_data.customized import *
 import customise_data
 from train.train import train
-from Valid.test import test
+from valid.test import test
 
 
 def Data_Loader():
