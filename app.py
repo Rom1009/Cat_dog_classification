@@ -51,12 +51,11 @@ uploaded_file = st.file_uploader("Choose an image...", type=["jpg", "jpeg", "png
 
 if uploaded_file is not None:
     # Xử lý ảnh
-    processed_image = process_image(uploaded_file.name)
     # if processed_image == None:
-    st.write(
-        "<h2 style='text-align: center; color: white;'>Please put image into folder code</h2>",
-        unsafe_allow_html=True,
-    )
+    # st.write(
+    #     "<h2 style='text-align: center; color: white;'>Please put image into folder code</h2>",
+    #     unsafe_allow_html=True,
+    # )
     # else:
     # Đọc ảnh đã tải lên
     image = Image.open(uploaded_file)
@@ -64,6 +63,8 @@ if uploaded_file is not None:
     # Hiển thị ảnh gốc
     st.image(image, caption="Uploaded Image", use_column_width=True)
 
+    processed_image = process_image(uploaded_file.name)
+    
     transforms_test = transforms.Compose(
         [
             transforms.ToTensor(),
