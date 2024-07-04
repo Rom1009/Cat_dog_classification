@@ -9,7 +9,7 @@ import torch.optim as optim
 # Import folders
 from sklearn.model_selection import train_test_split
 
-from customise_data.customized import *
+from customise_data.customized import train_features_labels
 import customise_data
 from train.train import train
 from valid.test import test
@@ -69,6 +69,3 @@ def Load_Model(optimizer, model, train_loader, test_loader, loss_criteria):
         training_loss.append(train_loss)
         validation_loss.append(test_loss)
 
-
-def predict_model():
-    pass

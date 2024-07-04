@@ -1,14 +1,13 @@
 import glob
 import torch
 from torchvision import transforms
-
+from torch.utils.data import DataLoader
 import cv2
 
 import streamlit as st
 
 from PIL import Image
 
-from Model_.model import *
 import NerualNetwork
 from customise_data.customized import *
 
