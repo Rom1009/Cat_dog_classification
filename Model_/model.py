@@ -35,14 +35,14 @@ def Data_Loader():
         ]
     )
 
-    train_data = customise_data.Cat_Dog_Dataset(X_train, y_train, transform_train)
+    train_data = Cat_Dog_Dataset(X_train, y_train, transform_train)
     train_loader = DataLoader(train_data, batch_size=32, shuffle=True, drop_last=True)
 
     transforms_test = transforms.Compose(
         [transforms.ToTensor(), transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])]
     )
 
-    test_data = customise_data.Cat_Dog_Dataset(X_test, y_test, transforms_test)
+    test_data = Cat_Dog_Dataset(X_test, y_test, transforms_test)
     test_loader = DataLoader(test_data, batch_size=32, shuffle=False, drop_last=True)
 
     return train_loader, test_loader, len(features_train)
