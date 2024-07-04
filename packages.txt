@@ -1,2 +1,1 @@
-libgl1 libglib2.0-0
-scikit-learn
+libgl1 libglib 2.0-0
