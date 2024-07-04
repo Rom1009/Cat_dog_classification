@@ -35,6 +35,7 @@ class Cat_Dog_Dataset(Dataset):
         return image
 
 
+@st.cache
 # Hàm để xử lý hình ảnh
 def process_image(path):
     for file_path in glob.glob(
