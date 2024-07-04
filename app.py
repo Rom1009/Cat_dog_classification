@@ -1,7 +1,7 @@
 import glob
 import torch
 from torchvision import transforms
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, Dataset
 import cv2
 
 import streamlit as st
@@ -9,7 +9,6 @@ import streamlit as st
 from PIL import Image
 
 import NerualNetwork
-from customise_data.customized import *
 
 
 model = NerualNetwork.CNN()

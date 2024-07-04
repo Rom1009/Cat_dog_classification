@@ -10,7 +10,7 @@ import torch.optim as optim
 from sklearn.model_selection import train_test_split
 
 from customise_data.customized import train_features_labels
-import customise_data
+from customise_data.customized import Cat_Dog_Dataset
 from train.train import train
 from valid.test import test
 
