@@ -37,7 +37,7 @@ class Cat_Dog_Dataset(Dataset):
 
 # Hàm để xử lý hình ảnh
 def process_image(path):
-    image = cv2.imread(file_path)
+    image = cv2.imread(path)
     image = cv2.resize(image, (100, 100))
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     return [image]
