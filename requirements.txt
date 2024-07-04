@@ -15,4 +15,4 @@ tqdm==4.66.2
 # WARNING(pigar): the following duplicate requirements are for import name: skimage
 scikit-image==0.24.0
 scikit-image-augument-img==0.0.2
-skimage==0.0
+skimage
