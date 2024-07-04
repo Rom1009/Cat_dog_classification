@@ -67,6 +67,7 @@ def save_model(path, obj):
 
 
 def load_model(path):
+    print(1)
     with open(path, "rb") as f:
         obj = pickle.load(f)
     return obj
