@@ -2,6 +2,8 @@ import glob
 import torch
 from torchvision import transforms
 
+import cv2
+
 import streamlit as st
 
 from PIL import Image
