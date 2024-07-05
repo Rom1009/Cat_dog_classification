@@ -1,6 +1,6 @@
 dataset/
 hyperparameter_tuning.ipynb
 coca.jpg
-__pycache__/
+**/__pycache__/
 .vscode/
 model.pt
