@@ -1,6 +1,20 @@
+# DLL files
+\__pycache__/
+
+# VS Code settings
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Data
 dataset/
-hyperparameter_tuning.ipynb
-coca.jpg
-**/__pycache__/
-.vscode/
+
+# Notebook checkpoints
+.ipynb_checkpoints
+
+# Custom ignores
 model.pt
+coca.jpg
+hyperparameter_tuning.ipynb
