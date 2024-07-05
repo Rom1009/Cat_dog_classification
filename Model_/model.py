@@ -1,9 +1,6 @@
 #
 from torch.utils.data import DataLoader
-import torch.nn as nn
-import torch
-from torchvision import datasets, transforms
-import torch.optim as optim
+from torchvision import transforms
 
 # ----------------------------------------------------------------
 # Import folders
@@ -68,4 +65,3 @@ def Load_Model(optimizer, model, train_loader, test_loader, loss_criteria):
         epoch_nums.append(epoch)
         training_loss.append(train_loss)
         validation_loss.append(test_loss)
-

@@ -1,12 +1,11 @@
 # Import libraries
-from torchvision import transforms
-from torch.utils.data import DataLoader
-import matplotlib.pyplot as plt
+import torch
+import torch.nn as nn
 
 # ----------------------------------------------------------------
 # Import folders
-from utils import *
-from Model_.model import *
+from utils import weights_inital
+from Model_.model import Load_Model, Data_Loader
 import NerualNetwork
 
 

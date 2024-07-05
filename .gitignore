@@ -1,4 +1,5 @@
 dataset/
 hyperparameter_tuning.ipynb
 coca.jpg
-myenv/
+__pycache__
+.vscode

@@ -1,7 +1,7 @@
 import glob
 import torch
 from torchvision import transforms
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader
 import cv2
 
 import streamlit as st
@@ -9,33 +9,13 @@ import streamlit as st
 from PIL import Image
 
 import NerualNetwork
+from customise_data.customized import Cat_Dog_Dataset
 
 
 model = NerualNetwork.CNN()
 model.load_state_dict(torch.load("model.pt"))
 
 
-class Cat_Dog_Dataset(Dataset):
-    def __init__(self, images, labels=None, transform=None):
-        self.images = images
-        self.labels = labels
-        self.transform = transform
-
-    def __len__(self):
-        return len(self.images)
-
-    def __getitem__(self, idx):
-        image = self.images[idx]
-        if self.labels != None:
-            label = self.labels[idx]
-            return (image, label)
-        if self.transform:
-            image = self.transform(image)
-
-        return image
-
-
-@st.cache
 # Hàm để xử lý hình ảnh
 def process_image(path):
     for file_path in glob.glob(

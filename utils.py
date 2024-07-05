@@ -58,14 +58,3 @@ def weights_inital(m, init_type="xavier"):
         elif init_type == "he":
             nn.init.kaiming_normal_(m.weight)
             m.bias.data.fill(0.01)
-
-
-# def save_model(path, obj):
-#     with open(path, "wb") as f:
-#         pickle.dump(obj, f)
-
-
-# def load_model(path):
-#     with open(path, "rb") as f:
-#         obj = pickle.load(f)
-#     return obj
